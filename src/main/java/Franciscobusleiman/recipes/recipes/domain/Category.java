@@ -1,6 +1,7 @@
 package Franciscobusleiman.recipes.recipes.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -12,8 +13,8 @@ public class Category {
 
     private String categoryName;
 
-    @ManyToMany(mappedBy = "categories")
-    private Set<Recipe> recipes;
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER)
+    private Set<Recipe> recipes = new HashSet<>();
 
     public Category(){
 
