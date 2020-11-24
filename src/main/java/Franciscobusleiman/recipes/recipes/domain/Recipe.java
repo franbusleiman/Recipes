@@ -1,6 +1,7 @@
 package Franciscobusleiman.recipes.recipes.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -26,13 +27,13 @@ public class Recipe {
     private Notes notes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private Set<Ingredient> ingredients;
+    private Set<Ingredient> ingredients = new HashSet<>();
 
     @ManyToMany
     @JoinTable (name = "recipe_category",
     joinColumns = @JoinColumn( name = "category_id"),
     inverseJoinColumns = @JoinColumn(name = "recipe_id"))
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
     public Recipe() {
     }
