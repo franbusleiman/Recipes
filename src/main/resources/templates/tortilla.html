@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tortilla Española</title>
+</head>
+<body>
+<h1>Tortilla Española</h1>
+
+Prep Time: <p th:text="${tortilla.getPrepTime()}"></p>
+Cook Time: <p th:text="${tortilla.getCookTime()}"></p>
+
+Categories: <ul>
+    <li th:each="categoria : ${tortilla.getCategories()}" th:text="${categoria.getCategoryName()}"></li>
+</ul>
+
+Ingredients: <ul>
+    <li  th:each="ingrediente : ${tortilla.getIngredients()}" th:text="${ingrediente.getDescription()} + ' ' +  ${ingrediente.getAmount()} + ' ' + ${ingrediente.getUnitOfMeasure().getUom()}"></li>
+</ul>
+
+Directions: <p th:text="${tortilla.getDirections()}"></p>
+Notes: <p th:text="${tortilla.getNotes().getNotes()}"></p>
+</body>
+</html>
