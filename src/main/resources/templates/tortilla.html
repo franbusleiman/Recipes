@@ -9,7 +9,7 @@
 
 Prep Time: <p th:text="${tortilla.getPrepTime()}"></p>
 Cook Time: <p th:text="${tortilla.getCookTime()}"></p>
-
+Difficulty: <p th:text="${tortilla.getDifficulty()}"></p>
 Categories: <ul>
     <li th:each="categoria : ${tortilla.getCategories()}" th:text="${categoria.getCategoryName()}"></li>
 </ul>

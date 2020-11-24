@@ -9,6 +9,7 @@
 
 Prep Time: <p th:text="${guacamole.getPrepTime()}"></p>
 Cook Time: <p th:text="${guacamole.getCookTime()}"></p>
+Difficulty: <p th:text="${guacamole.getDifficulty()}"></p>
 
 Categories: <ul>
     <li th:each="categoria : ${guacamole.getCategories()}" th:text="${categoria.getCategoryName()}"></li>
