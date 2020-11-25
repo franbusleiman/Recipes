@@ -4,12 +4,13 @@ import Franciscobusleiman.recipes.recipes.Repositories.CategoryRepository;
 import Franciscobusleiman.recipes.recipes.Repositories.RecipeRepository;
 import Franciscobusleiman.recipes.recipes.Repositories.UnitOfMeasureRepository;
 import Franciscobusleiman.recipes.recipes.domain.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.rmi.server.UnicastRemoteObject;
-
+@Slf4j
 @Component
 public class BootStrapData implements CommandLineRunner {
     private final CategoryRepository categoryRepository;
@@ -24,6 +25,7 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        log.debug("Cargando información de recetas");
 
         Recipe recetaGuacamole = new Recipe();
 recetaGuacamole.setDescription("Guacamole");

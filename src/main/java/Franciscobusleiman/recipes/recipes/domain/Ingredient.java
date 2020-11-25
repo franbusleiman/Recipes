@@ -1,8 +1,12 @@
 package Franciscobusleiman.recipes.recipes.domain;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Data
+@EqualsAndHashCode(exclude = {"recipes"})
 @Entity
 public class Ingredient {
     @Id
@@ -30,41 +34,5 @@ public class Ingredient {
         this.unitOfMeasure = unitOfMeasure;
         this.recipe = recipe;
     }
-    public String getDescription(){
-        return this.description;
-    }
-    public void setDescription(String description){
-        this.description = description;
-    }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public UnitOfMeasure getUnitOfMeasure() {
-        return unitOfMeasure;
-    }
-
-    public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
-        this.unitOfMeasure = unitOfMeasure;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    public BigDecimal getAmount(){
-        return this.amount;
-    }
-    public void setAmount(BigDecimal amount){
-        this.amount = amount;
-    }
 }
