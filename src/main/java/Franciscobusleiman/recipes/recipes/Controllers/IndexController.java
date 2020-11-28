@@ -8,14 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-    private final RecipeRepository recipeRepository;
-
-    public IndexController(RecipeRepository recipeRepository){
-        this.recipeRepository = recipeRepository;
-    }
+    public IndexController(){}
 
     @RequestMapping({"/index", " ", "/"})
-    public String getRecetas(Model model){
+    public String getRecetas(){
 
 
         return "index.html";

@@ -18,8 +18,8 @@ public class TortillaController {
     @RequestMapping({"/tortilla"})
     public String getRecetas(Model model){
  log.debug("Enviando a pantalla info. de la receta de tortilla");
-Recipe tortilla = recipeRepository.findByDescription("tortilla").get();
-model.addAttribute("tortilla", tortilla);
+
+model.addAttribute("tortilla", recipeRepository.findByDescription("tortilla").get());
         return "tortilla.html";
 
     }

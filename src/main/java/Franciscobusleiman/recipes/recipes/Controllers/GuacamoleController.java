@@ -19,8 +19,8 @@ public class GuacamoleController {
     public String getRecetas(Model model){
         log.debug("Enviando a pantalla info. de la receta de guacamola");
 
-Recipe guacamole = recipeRepository.findByDescription("Guacamole").get();
-model.addAttribute("guacamole", guacamole);
+
+model.addAttribute("guacamole", recipeRepository.findByDescription("Guacamole").get());
         return "guacamole.html";
 
     }
