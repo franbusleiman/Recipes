@@ -1,4 +1,4 @@
-package Franciscobusleiman.recipes.recipes.Commands;
+package Franciscobusleiman.recipes.recipes.commands;
 
 import Franciscobusleiman.recipes.recipes.domain.Category;
 import Franciscobusleiman.recipes.recipes.domain.Difficulty;
@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,7 +25,7 @@ public class RecipeCommand {
     private String directions;
     private Difficulty difficulty;
     private Byte[] image;
-    private Notes notes;
-    private Set<Ingredient> ingredients = new HashSet<>();
-    private Set<Category> categories = new HashSet<>();
+    private NotesCommand notes;
+    private Set<IngredientCommand> ingredients = new HashSet<>();
+    private Set<CategoryCommand> categories = new HashSet<>();
 }

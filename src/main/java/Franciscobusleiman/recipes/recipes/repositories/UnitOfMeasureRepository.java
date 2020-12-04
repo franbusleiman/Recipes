@@ -1,4 +1,4 @@
-package Franciscobusleiman.recipes.recipes.Repositories;
+package Franciscobusleiman.recipes.recipes.repositories;
 
 import Franciscobusleiman.recipes.recipes.domain.UnitOfMeasure;
 import org.springframework.data.repository.CrudRepository;

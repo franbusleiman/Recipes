@@ -1,4 +1,4 @@
-package Franciscobusleiman.recipes.recipes.Commands;
+package Franciscobusleiman.recipes.recipes.commands;
 
 import Franciscobusleiman.recipes.recipes.domain.Recipe;
 import Franciscobusleiman.recipes.recipes.domain.UnitOfMeasure;
@@ -15,7 +15,7 @@ public class IngredientCommand {
     private Long id;
     private String description;
     private BigDecimal amount;
-    private UnitOfMeasure unitOfMeasure;
-    private Recipe recipe;
+    private UnitOfMeasureCommand unitOfMeasure;
+    private RecipeCommand recipe;
 
 }

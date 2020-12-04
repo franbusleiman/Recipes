@@ -1,7 +1,6 @@
-package Franciscobusleiman.recipes.recipes.Controllers;
+package Franciscobusleiman.recipes.recipes.controllers;
 
-import Franciscobusleiman.recipes.recipes.Repositories.RecipeRepository;
-import Franciscobusleiman.recipes.recipes.domain.Recipe;
+import Franciscobusleiman.recipes.recipes.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

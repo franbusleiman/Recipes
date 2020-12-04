@@ -1,6 +1,6 @@
-package Franciscobusleiman.recipes.recipes.Controllers;
+package Franciscobusleiman.recipes.recipes.controllers;
 
-import Franciscobusleiman.recipes.recipes.Repositories.RecipeRepository;
+import Franciscobusleiman.recipes.recipes.repositories.RecipeRepository;
 import Franciscobusleiman.recipes.recipes.domain.Recipe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

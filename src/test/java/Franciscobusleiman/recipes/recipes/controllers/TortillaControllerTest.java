@@ -1,12 +1,11 @@
-package Franciscobusleiman.recipes.recipes.Controllers;
+package Franciscobusleiman.recipes.recipes.controllers;
 
-import Franciscobusleiman.recipes.recipes.Repositories.RecipeRepository;
+import Franciscobusleiman.recipes.recipes.repositories.RecipeRepository;
 import Franciscobusleiman.recipes.recipes.domain.Recipe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.ui.Model;
 
 import java.util.Optional;
