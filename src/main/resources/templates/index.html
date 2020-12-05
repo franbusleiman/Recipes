@@ -7,8 +7,16 @@
 <body>
 
 <h1> Recetas </h1>
+<table width="500">
+    <tr th:each="recipe : ${recipes}">
 
-<h2><a th:href="@{/guacamole}">Receta de guacamole</a></h2>
-<h2><a th:href="@{/tortilla}">Receta de torilla española</a></h2>
+        <td th:text="${recipe.getId()}"></td>
+        <td th:text="${recipe.getDescription()}"></td>
+        <td><a th:href="show">show</a> </td>
+        <td><a th:href="update">update</a> </td>
+        <td><a th:href="delete">delete</a> </td>
+
+    </tr>
+</table>
 </body>
 </html>

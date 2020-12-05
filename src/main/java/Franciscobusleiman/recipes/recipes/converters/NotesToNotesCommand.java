@@ -4,7 +4,9 @@ import Franciscobusleiman.recipes.recipes.commands.NotesCommand;
 import Franciscobusleiman.recipes.recipes.domain.Notes;
 import com.sun.istack.Nullable;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class NotesToNotesCommand implements Converter<Notes, NotesCommand> {
 
     @Nullable

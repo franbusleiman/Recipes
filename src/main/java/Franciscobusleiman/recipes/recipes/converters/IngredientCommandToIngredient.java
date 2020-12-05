@@ -4,14 +4,16 @@ import Franciscobusleiman.recipes.recipes.commands.IngredientCommand;
 import Franciscobusleiman.recipes.recipes.domain.Ingredient;
 import com.sun.istack.Nullable;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class IngredientCommandToIngredient implements Converter<IngredientCommand, Ingredient> {
 
-    private final RecipeCommandToRecipe recipeCommandToRecipe;
+
     private final UnitOfMeasureCommandToUnitOfMeasure unitOfMeasureCommandToUnitOfMeasure;
 
-    public IngredientCommandToIngredient(RecipeCommandToRecipe recipeCommandToRecipe, UnitOfMeasureCommandToUnitOfMeasure unitOfMeasureCommandToUnitOfMeasure){
-        this.recipeCommandToRecipe = recipeCommandToRecipe;
+    public IngredientCommandToIngredient(UnitOfMeasureCommandToUnitOfMeasure unitOfMeasureCommandToUnitOfMeasure){
+
         this.unitOfMeasureCommandToUnitOfMeasure = unitOfMeasureCommandToUnitOfMeasure;
     }
     @Nullable
@@ -25,7 +27,6 @@ public class IngredientCommandToIngredient implements Converter<IngredientComman
         ingredient.setDescription(ingredientCommand.getDescription());
 ingredient.setAmount(ingredientCommand.getAmount());
 ingredient.setId(ingredientCommand.getId());
-ingredient.setRecipe(recipeCommandToRecipe.convert(ingredientCommand.getRecipe()));
 ingredient.setUnitOfMeasure(unitOfMeasureCommandToUnitOfMeasure.convert(ingredientCommand.getUnitOfMeasure()));
 
 return ingredient;

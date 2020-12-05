@@ -7,16 +7,17 @@ import Franciscobusleiman.recipes.recipes.domain.Ingredient;
 
 import com.sun.istack.Nullable;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-
+@Component
 public class IngredientToIngredientCommand implements Converter<Ingredient, IngredientCommand> {
 
 private final UnitOfMeasureToUnitOfMeasureCommand unitOfMeasureToUnitOfMeasureCommand;
-private final RecipeToRecipeCommand recipeToRecipeCommand;
 
-public IngredientToIngredientCommand(UnitOfMeasureToUnitOfMeasureCommand unitOfMeasureToUnitOfMeasureCommand, RecipeToRecipeCommand recipeToRecipeCommand){
-    this.recipeToRecipeCommand = recipeToRecipeCommand;
+
+public IngredientToIngredientCommand(UnitOfMeasureToUnitOfMeasureCommand unitOfMeasureToUnitOfMeasureCommand){
+
     this.unitOfMeasureToUnitOfMeasureCommand = unitOfMeasureToUnitOfMeasureCommand;
 }
 
@@ -33,7 +34,7 @@ public IngredientToIngredientCommand(UnitOfMeasureToUnitOfMeasureCommand unitOfM
         ingredientCommand.setAmount(ingredient.getAmount());
         ingredientCommand.setDescription(ingredient.getDescription());
        ingredientCommand.setUnitOfMeasure(unitOfMeasureToUnitOfMeasureCommand.convert(ingredient.getUnitOfMeasure()));
-       ingredientCommand.setRecipe(recipeToRecipeCommand.convert(ingredient.getRecipe()));
+
 
 
        return ingredientCommand;

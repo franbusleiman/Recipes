@@ -5,14 +5,12 @@ import Franciscobusleiman.recipes.recipes.commands.RecipeCommand;
 import Franciscobusleiman.recipes.recipes.domain.Category;
 import com.sun.istack.Nullable;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CategoryCommandToCategory implements Converter<CategoryCommand, Category> {
 
-private final RecipeCommandToRecipe recipeCommandToRecipe;
 
-public CategoryCommandToCategory(RecipeCommandToRecipe recipeCommandToRecipe){
-    this.recipeCommandToRecipe = recipeCommandToRecipe;
-}
 
     @Nullable
     @Override
@@ -24,10 +22,6 @@ public CategoryCommandToCategory(RecipeCommandToRecipe recipeCommandToRecipe){
 
         category.setCategoryName(category.getCategoryName());
         category.setId(categoryCommand.getId());
-
-        for(RecipeCommand recipe: categoryCommand.getRecipes()){
-            category.getRecipes().add(recipeCommandToRecipe.convert(recipe));
-        }
 
 
         return category;

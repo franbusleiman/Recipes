@@ -14,6 +14,6 @@ import java.util.Set;
 public class CategoryCommand {
     private Long id;
     private String CategoryName;
-    private Set<RecipeCommand> recipes = new HashSet<>();
+
 
 }
