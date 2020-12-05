@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
+<h1 th:text="${recipe.getDescription()}"></h1>
+
+Prep Time: <p th:text="${recipe.getPrepTime()}"></p>
+Cook Time: <p th:text="${recipe.getCookTime()}"></p>
+Difficulty: <p th:text="${recipe.getDifficulty()}"></p>
+
+Categories: <ul>
+    <li th:each="categoria : ${recipe.getCategories()}" th:text="${categoria.getCategoryName()}"></li>
+</ul>
+
+Ingredients: <ul>
+    <li  th:each="ingrediente : ${recipe.getIngredients()}" th:text="${ingrediente.getDescription()} + ' ' +  ${ingrediente.getAmount()} + ' ' + ${ingrediente.getUnitOfMeasure().getUom()}"></li>
+</ul>
+
+Directions: <p th:text="${recipe.getDirections()}"></p>
+Notes: <p th:text="${recipe.getNotes().getNotes()}"></p>
+</body>
+</html>
