@@ -1,8 +1,11 @@
 package Franciscobusleiman.recipes.recipes.controllers;
 
+import Franciscobusleiman.recipes.recipes.commands.RecipeCommand;
+import Franciscobusleiman.recipes.recipes.domain.Recipe;
 import Franciscobusleiman.recipes.recipes.services.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,7 +18,7 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @RequestMapping("show/{id}")
+    @RequestMapping("/show/{id}")
     public String getRecipe(@PathVariable String id, Model model){
 
 
@@ -23,5 +26,23 @@ public class RecipeController {
 
 
         return "show.html";
+    }
+
+    @RequestMapping("newRecipe")
+    public String newRecipe(Model model){
+        RecipeCommand recipeCommand = new RecipeCommand();
+        model.addAttribute("recipe", recipeCommand);
+
+        return "form.html";
+    }
+
+    @RequestMapping("saveRecipe")
+    public String saveRecipe(@ModelAttribute RecipeCommand recipeCommand){
+
+
+   RecipeCommand recipeCommand1= recipeService.save(recipeCommand);
+
+   return "redirect:/show/" + recipeCommand1.getId();
+
     }
 }

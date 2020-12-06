@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Receta</title>
+</head>
+<body>
+
+<form method="post" action="saveRecipe" th:object="${recipe}">
+
+Recipe Name: <input type="text" th:field="*{description}">
+    <br>
+    Prep Time: <input type="text" th:field="*{prepTime}">
+    <br>
+
+    Cook Time: <input type="text" th:field="*{cookTime}">
+    <br>
+
+    Directions: <textarea th:field="*{directions}" rows="3"></textarea>
+    <br>
+    Notes: <input type="text" th:field="*{notes.notes}">
+    <br>
+
+
+<input type="submit" value="enviar">
+
+
+
+</form>
+
+</body>
+</html>
