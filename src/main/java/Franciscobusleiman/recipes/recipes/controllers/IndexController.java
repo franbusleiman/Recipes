@@ -14,7 +14,7 @@ public class IndexController {
         this.recipeService = recipeService;
     }
 
-    @RequestMapping({"/index", " ", "/"})
+    @RequestMapping({"/index", " ", "/", "index.html"})
     public String getRecetas(Model model){
 
 model.addAttribute("recipes", recipeService.getRecipes());
