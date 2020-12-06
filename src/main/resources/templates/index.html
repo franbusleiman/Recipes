@@ -13,7 +13,7 @@
         <td th:text="${recipe.getId()}"></td>
         <td th:text="${recipe.getDescription()}"></td>
         <td><a th:href="@{'show/' + ${recipe.getId()}}">show</a> </td>
-        <td><a th:href="update">update</a> </td>
+        <td><a th:href="@{'update/' + ${recipe.getId()}}">update</a> </td>
         <td><a th:href="delete">delete</a> </td>
 
     </tr>
