@@ -14,9 +14,9 @@
         <td th:text="${ingredient.amount}"></td>
         <td th:text="${ingredient.unitOfMeasure.uom}"></td>
         <td th:text="${ingredient.description}"></td>
-        <td><a th:href="@{'showIngredient/' + ${ingredient.id}} ">Show</a></td>
-        <td><a th:href="@{'updateIngredient/' + ${ingredient.id}} ">Update</a></td>
-        <td><a th:href="@{'deleteIngredient/' + ${ingredient.id}} ">Delete</a></td>
+        <td><a th:href="@{'showIngredient/' + ${recipe.getId()} + '/' + ${ingredient.id}} ">Show</a></td>
+        <td><a th:href="@{'updateIngredient/' + ${recipe.getId()} + '/' + ${ingredient.id}} ">Update</a></td>
+        <td><a th:href="@{'deleteIngredient/' + ${recipe.getId()} + '/' + ${ingredient.id}} ">Delete</a></td>
     </tr>
 
 

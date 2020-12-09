@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingredient</title>
+</head>
+<body>
+
+<div th:align="center">
+
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Amount</td>
+            <td>U.O.M.</td>
+            <td>Description</td>
+        </tr>
+        <tr>
+            <td th:text="${ingredient.getId()}">ID</td>
+            <td th:text="${ingredient.getAmount()}">Amount</td>
+            <td th:text="${ingredient.getUnitOfMeasure().getUom()}">U.O.M.</td>
+            <td th:text="${ingredient.getDescription()}">Description</td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>
