@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingredients</title>
+</head>
+<body>
+
+<h1 th:text="${recipe.getDescription()}"></h1>
+
+
+<table width="300">
+    <tr th:each="ingredient : ${recipe.getIngredients()}">
+        <td th:text="${ingredient.amount}"></td>
+        <td th:text="${ingredient.unitOfMeasure.uom}"></td>
+        <td th:text="${ingredient.description}"></td>
+        <td><a th:href="@{'showIngredient/' + ${ingredient.id}} ">Show</a></td>
+        <td><a th:href="@{'updateIngredient/' + ${ingredient.id}} ">Update</a></td>
+        <td><a th:href="@{'deleteIngredient/' + ${ingredient.id}} ">Delete</a></td>
+    </tr>
+
+
+</table>
+
+
+</body>
+</html>

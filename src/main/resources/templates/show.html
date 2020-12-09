@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <title>Show</title>
@@ -18,6 +18,10 @@ Categories: <ul>
 Ingredients: <ul>
     <li  th:each="ingrediente : ${recipe.getIngredients()}" th:text="${ingrediente.getDescription()} + ' ' +  ${ingrediente.getAmount()} + ' ' + ${ingrediente.getUnitOfMeasure().getUom()}"></li>
 </ul>
+
+Vew Ingredients: <a th:href="@{'ingredients/' + ${recipe.id}}">Vew Ingredients</a>
+
+<br>
 
 Directions: <p th:text="${recipe.getDirections()}"></p>
 Notes: <p th:text="${recipe.getNotes().getNotes()}"></p>
