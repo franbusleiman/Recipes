@@ -1,6 +1,7 @@
 package Franciscobusleiman.recipes.recipes.controllers;
 
 import Franciscobusleiman.recipes.recipes.commands.IngredientCommand;
+import Franciscobusleiman.recipes.recipes.commands.UnitOfMeasureCommand;
 import Franciscobusleiman.recipes.recipes.domain.Recipe;
 import Franciscobusleiman.recipes.recipes.services.IngredientService;
 import Franciscobusleiman.recipes.recipes.services.RecipeService;
@@ -49,7 +50,7 @@ public class IngredientController {
         return "ingredientForm.html";
     }
 
-    @RequestMapping("/SaveIngredient/{ingredientId}")
+    @RequestMapping("/SaveIngredient")
     public String updateIngredient(@ModelAttribute IngredientCommand ingredient, Model model){
 
 
@@ -58,6 +59,15 @@ model.addAttribute("ingredient", ingredientService.SaveOrUpdateIngredient(ingred
          return "showIngredient.html";
     }
 
+    @RequestMapping("/show/ingredients/newIngredient/{recipeId}")
+    public String newIngredient(@PathVariable String recipeId, Model model){
 
+        IngredientCommand ingredientCommand = new IngredientCommand();
+        ingredientCommand.setUnitOfMeasure(new UnitOfMeasureCommand());
+        ingredientCommand.setRecipeId(Long.valueOf(recipeId));
+        model.addAttribute("ingredient", ingredientCommand);
+        model.addAttribute("uoms", unitOfMeasureService.getUoms());
+        return "ingredientForm.html";
+    }
 
 }

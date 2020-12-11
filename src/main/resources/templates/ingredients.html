@@ -6,10 +6,14 @@
 </head>
 <body>
 
-<h1 th:text="${recipe.getDescription()}"></h1>
 
 
-<table width="300">
+<div th:align="center">
+    <h1 th:text="${recipe.getDescription()}"></h1>
+    <br>
+
+
+    <table width="300">
     <tr th:each="ingredient : ${recipe.getIngredients()}">
         <td th:text="${ingredient.amount}"></td>
         <td th:text="${ingredient.unitOfMeasure.uom}"></td>
@@ -22,6 +26,9 @@
 
 </table>
 
+<br>
+<a th:href="@{'newIngredient/' + ${recipe.getId()}}" > NEW INGREDIENT</a>
+</div>
 
 </body>
 </html>

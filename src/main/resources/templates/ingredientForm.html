@@ -8,7 +8,7 @@
 
 <div th:align="center">
 
-    <form th:object="${ingredient}" th:action="@{'/SaveIngredient/' + ${ingredient.getId()}}"  method="post">
+    <form th:object="${ingredient}" th:action="@{/SaveIngredient}"  method="post">
 
         <input type="hidden" th:field="*{id}">
         <input type="hidden" th:field="*{recipeId}">
