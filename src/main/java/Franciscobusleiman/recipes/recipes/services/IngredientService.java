@@ -8,6 +8,8 @@ public interface IngredientService {
 
     public IngredientCommand findRecipeAndIngredientById(Long recipeId, Long ingredeintId);
 
+    public void deleteIngredient(Long recipeId, Long ingredientId);
+
     public IngredientCommand SaveOrUpdateIngredient(IngredientCommand ingredientCommand);
 
 }

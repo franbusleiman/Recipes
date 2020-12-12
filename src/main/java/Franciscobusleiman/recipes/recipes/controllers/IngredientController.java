@@ -59,6 +59,14 @@ model.addAttribute("ingredient", ingredientService.SaveOrUpdateIngredient(ingred
          return "showIngredient.html";
     }
 
+    @RequestMapping("/show/ingredients/deleteIngredient/{recipeId}/{ingredientId}")
+    public String deleteIngredient(@PathVariable String recipeId, @PathVariable String ingredientId){
+
+        ingredientService.deleteIngredient(Long.valueOf(recipeId), Long.valueOf(ingredientId));
+
+        return "redirect: ../../../../../../index";
+    }
+
     @RequestMapping("/show/ingredients/newIngredient/{recipeId}")
     public String newIngredient(@PathVariable String recipeId, Model model){
 
