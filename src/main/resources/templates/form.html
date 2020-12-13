@@ -6,7 +6,9 @@
 </head>
 <body>
 
-<form method="post" action="saveRecipe" th:object="${recipe}">
+<form th:object="${recipe}" th:action="@{/saveRecipe/}" method="post"  >
+
+    <input type="hidden" th:field="*{id}">
 
 Recipe Name: <input type="text" th:field="*{description}">
     <br>
@@ -17,6 +19,14 @@ Recipe Name: <input type="text" th:field="*{description}">
     <br>
 
     Directions: <textarea th:field="*{directions}" rows="3"></textarea>
+    <br>
+    Category: <select th:field="*{difficulty}">
+    <option th:each="dificultad : ${T(Franciscobusleiman.recipes.recipes.domain.Difficulty).values()}"
+    th:value="${dificultad}"
+    th:text="${dificultad}"></option>
+
+
+</select>
     <br>
     Notes: <input type="text" th:field="*{notes.notes}">
     <br>
