@@ -7,6 +7,15 @@
 <body>
 <h1 th:text="${recipe.getDescription()}"></h1>
 
+<div th:align="left">
+    <a th:href="@{'/recipe/' + ${recipe.getId()} + '/image'}">Change image</a>
+</div>
+<div th:align="rigth">
+
+    <img th:src="@{'/recipe/' + ${recipe.getId()} +'/recipeimage'}" width="200" height="200">
+
+</div>
+
 Prep Time: <p th:text="${recipe.getPrepTime()}"></p>
 Cook Time: <p th:text="${recipe.getCookTime()}"></p>
 Difficulty: <p th:text="${recipe.getDifficulty()}"></p>
@@ -19,7 +28,7 @@ Ingredients: <ul>
     <li  th:each="ingrediente : ${recipe.getIngredients()}" th:text="${ingrediente.getDescription()} + ' ' +  ${ingrediente.getAmount()} + ' ' + ${ingrediente.getUnitOfMeasure().getUom()}"></li>
 </ul>
 
-Vew Ingredients: <a th:href="@{'ingredients/' + ${recipe.id}}">Vew Ingredients</a>
+Vew Ingredients: <a th:href="@{'/recipe/' + ${recipe.id} + '/ingredients/'}">Vew Ingredients</a>
 
 <br>
 

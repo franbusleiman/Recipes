@@ -18,16 +18,16 @@
         <td th:text="${ingredient.amount}"></td>
         <td th:text="${ingredient.unitOfMeasure.uom}"></td>
         <td th:text="${ingredient.description}"></td>
-        <td><a th:href="@{'showIngredient/' + ${recipe.getId()} + '/' + ${ingredient.id}} ">Show</a></td>
-        <td><a th:href="@{'updateIngredient/' + ${recipe.getId()} + '/' + ${ingredient.id}} ">Update</a></td>
-        <td><a th:href="@{'deleteIngredient/' + ${recipe.getId()} + '/' + ${ingredient.id}} ">Delete</a></td>
+        <td><a th:href="@{'/recipe/' + ${recipe.getId()} + '/ingredient/'   + ${ingredient.id} + '/showIngredient'} ">Show</a></td>
+        <td><a th:href="@{'/recipe/' + ${recipe.getId()} + '/ingredient/'   + ${ingredient.id} + '/updateIngredient'}">Update</a></td>
+        <td><a th:href="@{'/recipe/' + ${recipe.getId()} + '/ingredient/'   + ${ingredient.id} + '/deleteIngredient'}">Delete</a></td>
     </tr>
 
 
 </table>
 
 <br>
-<a th:href="@{'newIngredient/' + ${recipe.getId()}}" > NEW INGREDIENT</a>
+<a th:href="@{'/recipe/' + ${recipe.getId()} + '/newIngredient'}" > NEW INGREDIENT</a>
 </div>
 
 </body>
