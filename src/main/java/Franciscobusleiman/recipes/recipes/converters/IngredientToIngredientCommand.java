@@ -6,6 +6,7 @@ import Franciscobusleiman.recipes.recipes.commands.UnitOfMeasureCommand;
 import Franciscobusleiman.recipes.recipes.domain.Ingredient;
 
 import com.sun.istack.Nullable;
+import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +21,7 @@ public IngredientToIngredientCommand(UnitOfMeasureToUnitOfMeasureCommand unitOfM
 
     this.unitOfMeasureToUnitOfMeasureCommand = unitOfMeasureToUnitOfMeasureCommand;
 }
-
+    @Synchronized
     @Nullable
     @Override
     public IngredientCommand convert(Ingredient ingredient) {
@@ -32,12 +33,14 @@ public IngredientToIngredientCommand(UnitOfMeasureToUnitOfMeasureCommand unitOfM
 
         ingredientCommand.setId(ingredient.getId());
         if(ingredient.getRecipe() != null){
-        ingredientCommand.setRecipeId(ingredient.getRecipe().getId());}
+        ingredientCommand.setRecipeId(ingredient.getRecipe().getId());
+        }
         ingredientCommand.setAmount(ingredient.getAmount());
         ingredientCommand.setDescription(ingredient.getDescription());
-       ingredientCommand.setUnitOfMeasure(unitOfMeasureToUnitOfMeasureCommand.convert(ingredient.getUnitOfMeasure()));
+        if(ingredient.getUnitOfMeasure() != null) {
+            ingredientCommand.setUnitOfMeasure(unitOfMeasureToUnitOfMeasureCommand.convert(ingredient.getUnitOfMeasure()));
 
-
+        }
 
        return ingredientCommand;
 

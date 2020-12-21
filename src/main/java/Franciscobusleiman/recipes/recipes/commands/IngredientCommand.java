@@ -18,5 +18,7 @@ public class IngredientCommand {
     private BigDecimal amount;
     private UnitOfMeasureCommand unitOfMeasure;
 
-
+public void setUnitOfMeasure(UnitOfMeasureCommand unitOfMeasure){
+    this.unitOfMeasure = unitOfMeasure;
+}
 }
