@@ -67,7 +67,7 @@ model.addAttribute("ingredient", ingredientService.SaveOrUpdateIngredient(ingred
         return "redirect:/index";
     }
 
-    @RequestMapping("recipe/{recipeId}/newIngredient")
+    @RequestMapping("/recipe/{recipeId}/newIngredient")
     public String newIngredient(@PathVariable String recipeId, Model model){
 
         IngredientCommand ingredientCommand = new IngredientCommand();
