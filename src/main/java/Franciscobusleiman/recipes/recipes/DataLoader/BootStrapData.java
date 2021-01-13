@@ -28,41 +28,33 @@ public class BootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        List<Recipe> recipeList = new ArrayList<>();
-        recipeRepository.findAll().forEach(recipeList::add);
-
-        if(recipeList.size()==0){
 
 
 
-            Category category1 = new Category();
-        category1.setCategoryName("mexicana");
+if(! categoryRepository.findByCategoryName("mexicana").isPresent()) {
+    Category category1 = new Category();
+    category1.setCategoryName("mexicana");
 
-        Category category2 = new Category();
-        category2.setCategoryName("argentina");
+    Category category2 = new Category();
+    category2.setCategoryName("argentina");
 
-        Category category3 = new Category();
-        category3.setCategoryName("italiana");
+    Category category3 = new Category();
+    category3.setCategoryName("italiana");
 
-        Category category4 = new Category();
-        category4.setCategoryName("vasca");
+    Category category4 = new Category();
+    category4.setCategoryName("vasca");
 
-        UnitOfMeasure unitOfMeasure1 = new UnitOfMeasure();
-        unitOfMeasure1.setUom("cucharada");
+    UnitOfMeasure unitOfMeasure1 = new UnitOfMeasure();
+    unitOfMeasure1.setUom("cucharada");
 
-        UnitOfMeasure unitOfMeasure2 = new UnitOfMeasure();
-        unitOfMeasure2.setUom("unidad");
+    UnitOfMeasure unitOfMeasure2 = new UnitOfMeasure();
+    unitOfMeasure2.setUom("unidad");
 
-        UnitOfMeasure unitOfMeasure3 = new UnitOfMeasure();
-        unitOfMeasure3.setUom("gramo");
+    UnitOfMeasure unitOfMeasure3 = new UnitOfMeasure();
+    unitOfMeasure3.setUom("gramo");
 
-        categoryRepository.save(category1);
-            categoryRepository.save(category2);
-            categoryRepository.save(category3);
-            categoryRepository.save(category4);
-            unitOfMeasureRepository.save(unitOfMeasure1);
-            unitOfMeasureRepository.save(unitOfMeasure2);
-            unitOfMeasureRepository.save(unitOfMeasure3);
+
+
 
             log.debug("Cargando información de recetas");
 
@@ -126,6 +118,13 @@ public class BootStrapData implements CommandLineRunner {
             recetaTortilla.getIngredients().add(new Ingredient("sal", new BigDecimal(1), unitOfMeasure3, recetaTortilla));
 
             recipeRepository.save(recetaTortilla);
+    categoryRepository.save(category1);
+    categoryRepository.save(category2);
+    categoryRepository.save(category3);
+    categoryRepository.save(category4);
+    unitOfMeasureRepository.save(unitOfMeasure1);
+    unitOfMeasureRepository.save(unitOfMeasure2);
+    unitOfMeasureRepository.save(unitOfMeasure3);
         }
 
     }

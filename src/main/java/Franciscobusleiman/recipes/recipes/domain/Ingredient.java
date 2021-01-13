@@ -12,17 +12,16 @@ import java.util.UUID;
 @Data
 @EqualsAndHashCode(exclude = {"recipe"})
 @ToString(exclude = {"recipe"})
-@Document
+
 public class Ingredient {
 
 @Id
 private String id = UUID.randomUUID().toString();
     private String description;
     private BigDecimal amount;
-
-
+@DBRef
     private Recipe recipe;
-    @DBRef
+@DBRef
     private UnitOfMeasure unitOfMeasure;
 
 
