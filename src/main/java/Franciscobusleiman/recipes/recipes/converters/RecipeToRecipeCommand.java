@@ -2,7 +2,7 @@ package Franciscobusleiman.recipes.recipes.converters;
 
 import Franciscobusleiman.recipes.recipes.commands.RecipeCommand;
 import Franciscobusleiman.recipes.recipes.domain.*;
-import com.sun.istack.Nullable;
+
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +24,7 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
 
     }
 
-    @Nullable
+
     @Override
     public RecipeCommand convert(Recipe recipe) {
         if (recipe == null) {

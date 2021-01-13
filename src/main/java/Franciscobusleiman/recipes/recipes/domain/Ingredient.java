@@ -1,27 +1,28 @@
 package Franciscobusleiman.recipes.recipes.domain;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
+
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Data
 @EqualsAndHashCode(exclude = {"recipe"})
 @ToString(exclude = {"recipe"})
-@Entity
+@Document
 public class Ingredient {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+@Id
+private String id = UUID.randomUUID().toString();
     private String description;
     private BigDecimal amount;
 
-    @ManyToOne
-    @JoinColumn(name = "recipe_id")
-    private Recipe recipe;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    private Recipe recipe;
+    @DBRef
     private UnitOfMeasure unitOfMeasure;
 
 

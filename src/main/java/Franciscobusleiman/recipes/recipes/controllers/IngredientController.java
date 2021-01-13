@@ -29,7 +29,7 @@ public class IngredientController {
 
     @RequestMapping("recipe/{id}/ingredients")
     public String getIngredients(@PathVariable String id, Model model){
-        model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
+        model.addAttribute("recipe", recipeService.findCommandById(id));
 
         return "recipe/ingredient/ingredients";
     }
@@ -37,14 +37,14 @@ public class IngredientController {
     @RequestMapping("/recipe/{recipeId}/ingredient/{ingredientId}/showIngredient")
     public String getIngredient(@PathVariable String recipeId, @PathVariable String ingredientId, Model model){
 
-        model.addAttribute("ingredient", ingredientService.findRecipeAndIngredientById(Long.valueOf(recipeId), Long.valueOf(ingredientId)));
+        model.addAttribute("ingredient", ingredientService.findRecipeAndIngredientById(recipeId, ingredientId));
         return "recipe/ingredient/showIngredient";
     }
 
     @RequestMapping("/recipe/{recipeId}/ingredient/{ingredientId}/updateIngredient")
     public String updateIngredientes(@PathVariable String recipeId, @PathVariable String ingredientId, Model model){
 
-        model.addAttribute("ingredient", ingredientService.findRecipeAndIngredientById(Long.valueOf(recipeId), Long.valueOf(ingredientId)));
+        model.addAttribute("ingredient", ingredientService.findRecipeAndIngredientById(recipeId, ingredientId));
         model.addAttribute("uoms", unitOfMeasureService.getUoms() );
 
         return "recipe/ingredient/ingredientForm";
@@ -62,7 +62,7 @@ model.addAttribute("ingredient", ingredientService.SaveOrUpdateIngredient(ingred
     @RequestMapping("/recipe/{recipeId}/ingredient/{ingredientId}/deleteIngredient")
     public String deleteIngredient(@PathVariable String recipeId, @PathVariable String ingredientId){
 
-        ingredientService.deleteIngredient(Long.valueOf(recipeId), Long.valueOf(ingredientId));
+        ingredientService.deleteIngredient(recipeId, ingredientId);
 
         return "redirect:/index";
     }
@@ -72,7 +72,7 @@ model.addAttribute("ingredient", ingredientService.SaveOrUpdateIngredient(ingred
 
         IngredientCommand ingredientCommand = new IngredientCommand();
         ingredientCommand.setUnitOfMeasure(new UnitOfMeasureCommand());
-        ingredientCommand.setRecipeId(Long.valueOf(recipeId));
+        ingredientCommand.setRecipeId(recipeId);
         model.addAttribute("ingredient", ingredientCommand);
         model.addAttribute("uoms", unitOfMeasureService.getUoms());
         return "recipe/ingredient/ingredientForm";

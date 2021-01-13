@@ -17,7 +17,7 @@ public class ImageServiceImpl implements ImageService{
         this.recipeRepository = recipeRepository;
     }
     @Override
-    public void SaveImage(Long id, MultipartFile file) throws IOException {
+    public void SaveImage(String id, MultipartFile file) throws IOException {
 
         Recipe recipe = recipeService.findById(id);
 

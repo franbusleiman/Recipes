@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IngredientService {
 
-    public IngredientCommand findRecipeAndIngredientById(Long recipeId, Long ingredeintId);
+    public IngredientCommand findRecipeAndIngredientById(String recipeId, String ingredeintId);
 
-    public void deleteIngredient(Long recipeId, Long ingredientId);
+    public void deleteIngredient(String recipeId, String ingredientId);
 
     public IngredientCommand SaveOrUpdateIngredient(IngredientCommand ingredientCommand);
 

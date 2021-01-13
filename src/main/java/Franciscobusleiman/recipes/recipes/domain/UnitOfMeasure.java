@@ -1,19 +1,14 @@
 package Franciscobusleiman.recipes.recipes.domain;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.UUID;
 
 @Data
-@Entity
 public class UnitOfMeasure {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+    private String id = UUID.randomUUID().toString();
     private String uom;
 
     public UnitOfMeasure(){

@@ -1,27 +1,31 @@
 package Franciscobusleiman.recipes.recipes.domain;
 
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
+
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @EqualsAndHashCode(exclude = {"recipes"})
-@Entity
-public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+@ToString(exclude = {"recipe"})
+@Document
+public class Category{
+   @Id
+    private String id = UUID.randomUUID().toString();
     private String categoryName;
-
-    @ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER)
+ @DBRef
     private Set<Recipe> recipes = new HashSet<>();
 
     public Category(){
 
     }
 
-}
+    }
+

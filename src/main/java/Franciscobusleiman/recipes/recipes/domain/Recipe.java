@@ -1,21 +1,25 @@
 package Franciscobusleiman.recipes.recipes.domain;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
+
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @EqualsAndHashCode(exclude = {"categories", "ingredients"})
-@ToString(exclude = {"ingredients"})
-@Entity
+@ToString(exclude = {"ingredients", "categories"})
+@Document
 public class Recipe {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+@Id
+private String id = UUID.randomUUID().toString();
 
     private String description;
     private Integer prepTime;
@@ -23,24 +27,17 @@ public class Recipe {
     private Integer servings;
     private String source;
     private String url;
-    @Lob
+
     private String directions;
-    @Enumerated(EnumType.STRING)
+
     private Difficulty difficulty;
-    @Lob
+
     private Byte[] image;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "notes_id")
     private Notes notes;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients = new HashSet<>();
-
-    @ManyToMany
-    @JoinTable (name = "recipe_category",
-    joinColumns = @JoinColumn( name = "category_id"),
-    inverseJoinColumns = @JoinColumn(name = "recipe_id"))
+    @DBRef
     private Set<Category> categories = new HashSet<>();
 
     public Recipe() {

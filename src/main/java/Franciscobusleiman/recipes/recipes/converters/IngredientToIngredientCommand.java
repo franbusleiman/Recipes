@@ -5,7 +5,7 @@ import Franciscobusleiman.recipes.recipes.commands.RecipeCommand;
 import Franciscobusleiman.recipes.recipes.commands.UnitOfMeasureCommand;
 import Franciscobusleiman.recipes.recipes.domain.Ingredient;
 
-import com.sun.istack.Nullable;
+
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -22,7 +22,7 @@ public IngredientToIngredientCommand(UnitOfMeasureToUnitOfMeasureCommand unitOfM
     this.unitOfMeasureToUnitOfMeasureCommand = unitOfMeasureToUnitOfMeasureCommand;
 }
     @Synchronized
-    @Nullable
+
     @Override
     public IngredientCommand convert(Ingredient ingredient) {
         if(ingredient == null){

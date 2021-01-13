@@ -2,14 +2,13 @@ package Franciscobusleiman.recipes.recipes.converters;
 
 import Franciscobusleiman.recipes.recipes.commands.UnitOfMeasureCommand;
 import Franciscobusleiman.recipes.recipes.domain.UnitOfMeasure;
-import com.sun.istack.Nullable;
+
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UnitOfMeasureToUnitOfMeasureCommand implements Converter<UnitOfMeasure, UnitOfMeasureCommand> {
 
-    @Nullable
     @Override
     public UnitOfMeasureCommand convert(UnitOfMeasure unitOfMeasure) {
         if(unitOfMeasure == null){

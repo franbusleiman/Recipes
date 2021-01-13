@@ -6,7 +6,7 @@ import Franciscobusleiman.recipes.recipes.converters.RecipeCommandToRecipe;
 import Franciscobusleiman.recipes.recipes.converters.RecipeToRecipeCommand;
 import Franciscobusleiman.recipes.recipes.domain.Recipe;
 import Franciscobusleiman.recipes.recipes.repositories.RecipeRepository;
-import com.sun.istack.Nullable;
+
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -36,14 +36,14 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
 
         recipeRepository.deleteById(id);
 
     }
-    @Nullable
+
     @Override
-    public Recipe findById(Long id) {
+    public Recipe findById(String id) {
 
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
         if(!recipeOptional.isPresent()){
@@ -53,7 +53,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public RecipeCommand findCommandById(Long id) {
+    public RecipeCommand findCommandById(String id) {
 
     RecipeCommand recipeCommand = recipeToRecipeCommand.convert(findById(id));
     return recipeCommand;

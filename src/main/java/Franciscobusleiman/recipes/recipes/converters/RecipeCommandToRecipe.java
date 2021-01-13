@@ -4,7 +4,7 @@ import Franciscobusleiman.recipes.recipes.commands.CategoryCommand;
 import Franciscobusleiman.recipes.recipes.commands.IngredientCommand;
 import Franciscobusleiman.recipes.recipes.commands.RecipeCommand;
 import Franciscobusleiman.recipes.recipes.domain.Recipe;
-import com.sun.istack.Nullable;
+
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,6 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
         this.notesCommandToNotes = notesCommandToNotes;
     }
 
-    @Nullable
     @Override
     public Recipe convert(RecipeCommand recipeCommand) {
 

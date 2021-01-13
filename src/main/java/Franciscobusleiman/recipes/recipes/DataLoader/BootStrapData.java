@@ -28,11 +28,41 @@ public class BootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-
         List<Recipe> recipeList = new ArrayList<>();
         recipeRepository.findAll().forEach(recipeList::add);
 
         if(recipeList.size()==0){
+
+
+
+            Category category1 = new Category();
+        category1.setCategoryName("mexicana");
+
+        Category category2 = new Category();
+        category2.setCategoryName("argentina");
+
+        Category category3 = new Category();
+        category3.setCategoryName("italiana");
+
+        Category category4 = new Category();
+        category4.setCategoryName("vasca");
+
+        UnitOfMeasure unitOfMeasure1 = new UnitOfMeasure();
+        unitOfMeasure1.setUom("cucharada");
+
+        UnitOfMeasure unitOfMeasure2 = new UnitOfMeasure();
+        unitOfMeasure2.setUom("unidad");
+
+        UnitOfMeasure unitOfMeasure3 = new UnitOfMeasure();
+        unitOfMeasure3.setUom("gramo");
+
+        categoryRepository.save(category1);
+            categoryRepository.save(category2);
+            categoryRepository.save(category3);
+            categoryRepository.save(category4);
+            unitOfMeasureRepository.save(unitOfMeasure1);
+            unitOfMeasureRepository.save(unitOfMeasure2);
+            unitOfMeasureRepository.save(unitOfMeasure3);
 
             log.debug("Cargando información de recetas");
 
@@ -55,22 +85,19 @@ public class BootStrapData implements CommandLineRunner {
 
             recetaGuacamole.setNotes(notaGuacamole);
 
-            Category mexicana = categoryRepository.findByCategoryName("mexicana").get();
 
-            recetaGuacamole.getCategories().add(mexicana);
-            mexicana.getRecipes().add(recetaGuacamole);
+            recetaGuacamole.getCategories().add(category1);
+            category1.getRecipes().add(recetaGuacamole);
 
-            UnitOfMeasure cucharada = unitOfMeasureRepository.findByUom("cucharada").get();
-            UnitOfMeasure unidad = unitOfMeasureRepository.findByUom("unidad").get();
-            UnitOfMeasure gramo = unitOfMeasureRepository.findByUom("gramo").get();
 
-            recetaGuacamole.getIngredients().add(new Ingredient("aguacate", new BigDecimal(2), unidad, recetaGuacamole));
-            recetaGuacamole.getIngredients().add(new Ingredient("tomate", new BigDecimal(1), unidad, recetaGuacamole));
-            recetaGuacamole.getIngredients().add(new Ingredient("cebolla", new BigDecimal(30), gramo, recetaGuacamole));
-            recetaGuacamole.getIngredients().add(new Ingredient("pimiento verde", new BigDecimal(0.25), unidad, recetaGuacamole));
-            recetaGuacamole.getIngredients().add(new Ingredient("lima", new BigDecimal(0.5), unidad, recetaGuacamole));
-            recetaGuacamole.getIngredients().add(new Ingredient("cilantro", new BigDecimal(1), unidad, recetaGuacamole));
-            recetaGuacamole.getIngredients().add(new Ingredient("sal", new BigDecimal(1), cucharada, recetaGuacamole));
+
+            recetaGuacamole.getIngredients().add(new Ingredient("aguacate", new BigDecimal(2), unitOfMeasure1, recetaGuacamole));
+            recetaGuacamole.getIngredients().add(new Ingredient("tomate", new BigDecimal(1), unitOfMeasure2, recetaGuacamole));
+            recetaGuacamole.getIngredients().add(new Ingredient("cebolla", new BigDecimal(30), unitOfMeasure2, recetaGuacamole));
+            recetaGuacamole.getIngredients().add(new Ingredient("pimiento verde", new BigDecimal(0.25), unitOfMeasure2, recetaGuacamole));
+            recetaGuacamole.getIngredients().add(new Ingredient("lima", new BigDecimal(0.5), unitOfMeasure2, recetaGuacamole));
+            recetaGuacamole.getIngredients().add(new Ingredient("cilantro", new BigDecimal(1), unitOfMeasure2, recetaGuacamole));
+            recetaGuacamole.getIngredients().add(new Ingredient("sal", new BigDecimal(1), unitOfMeasure2, recetaGuacamole));
 
             recipeRepository.save(recetaGuacamole);
 
@@ -86,18 +113,17 @@ public class BootStrapData implements CommandLineRunner {
             notaTortilla.setNotes("Corta las patatas de manera que las rodajas tengan un espesor similar, para que se cocinen de manera uniforme. La cebolla córtala en juliana, no muy fina, para que no se queme.");
             recetaTortilla.setNotes(notaTortilla);
 
-            Category vasca = categoryRepository.findByCategoryName("vasca").get();
-            Category argentina = categoryRepository.findByCategoryName("argentina").get();
-            recetaTortilla.getCategories().add(vasca);
-            recetaTortilla.getCategories().add(argentina);
-            vasca.getRecipes().add(recetaTortilla);
-            argentina.getRecipes().add(recetaTortilla);
 
-            recetaTortilla.getIngredients().add(new Ingredient("huevo", new BigDecimal(5), unidad, recetaTortilla));
-            recetaTortilla.getIngredients().add(new Ingredient("papa", new BigDecimal(500), gramo, recetaTortilla));
-            recetaTortilla.getIngredients().add(new Ingredient("aceite de oliva", new BigDecimal(1), cucharada, recetaTortilla));
-            recetaTortilla.getIngredients().add(new Ingredient("cebolla", new BigDecimal(1), unidad, recetaTortilla));
-            recetaTortilla.getIngredients().add(new Ingredient("sal", new BigDecimal(1), cucharada, recetaTortilla));
+            recetaTortilla.getCategories().add(category2);
+            recetaTortilla.getCategories().add(category3);
+            category2.getRecipes().add(recetaTortilla);
+            category3.getRecipes().add(recetaTortilla);
+
+            recetaTortilla.getIngredients().add(new Ingredient("huevo", new BigDecimal(5), unitOfMeasure1, recetaTortilla));
+            recetaTortilla.getIngredients().add(new Ingredient("papa", new BigDecimal(500), unitOfMeasure3, recetaTortilla));
+            recetaTortilla.getIngredients().add(new Ingredient("aceite de oliva", new BigDecimal(1), unitOfMeasure3, recetaTortilla));
+            recetaTortilla.getIngredients().add(new Ingredient("cebolla", new BigDecimal(1), unitOfMeasure3, recetaTortilla));
+            recetaTortilla.getIngredients().add(new Ingredient("sal", new BigDecimal(1), unitOfMeasure3, recetaTortilla));
 
             recipeRepository.save(recetaTortilla);
         }

@@ -8,7 +8,7 @@ import java.util.Optional;
 
 
 @Repository
-public interface RecipeRepository extends CrudRepository<Recipe, Long> {
+public interface RecipeRepository extends CrudRepository<Recipe, String> {
 
     public Optional<Recipe> findByDescription(String description);
 }

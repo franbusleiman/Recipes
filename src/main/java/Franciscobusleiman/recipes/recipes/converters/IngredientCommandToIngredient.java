@@ -2,7 +2,7 @@ package Franciscobusleiman.recipes.recipes.converters;
 
 import Franciscobusleiman.recipes.recipes.commands.IngredientCommand;
 import Franciscobusleiman.recipes.recipes.domain.Ingredient;
-import com.sun.istack.Nullable;
+
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,7 @@ public class IngredientCommandToIngredient implements Converter<IngredientComman
 
         this.unitOfMeasureCommandToUnitOfMeasure = unitOfMeasureCommandToUnitOfMeasure;
     }
-    @Nullable
+
     @Override
     public Ingredient convert(IngredientCommand ingredientCommand) {
         if(ingredientCommand == null){

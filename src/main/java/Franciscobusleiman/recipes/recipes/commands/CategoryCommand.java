@@ -12,7 +12,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 public class CategoryCommand {
-    private Long id;
+    private String id;
     private String CategoryName;
 
 

@@ -28,7 +28,7 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public IngredientCommand findRecipeAndIngredientById(Long recipeId, Long ingredeintId) {
+    public IngredientCommand findRecipeAndIngredientById(String recipeId, String ingredeintId) {
 
         Optional<Recipe> recipe = recipeRepository.findById(recipeId);
 
@@ -48,7 +48,7 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public void deleteIngredient(Long recipeId, Long ingredientId) {
+    public void deleteIngredient(String recipeId, String ingredientId) {
 
         Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
 

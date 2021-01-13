@@ -2,17 +2,17 @@ package Franciscobusleiman.recipes.recipes.domain;
 
 import lombok.*;
 
-import javax.persistence.*;
+
 import java.util.Objects;
+import java.util.UUID;
 
 @Data
-@Entity
+
 public class Notes {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-@Lob
+
+    private String id = UUID.randomUUID().toString();
+
     private String notes;
 
 
