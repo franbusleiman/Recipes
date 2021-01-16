@@ -5,6 +5,7 @@ import Franciscobusleiman.recipes.recipes.converters.IngredientCommandToIngredie
 import Franciscobusleiman.recipes.recipes.converters.IngredientToIngredientCommand;
 import Franciscobusleiman.recipes.recipes.domain.Ingredient;
 import Franciscobusleiman.recipes.recipes.domain.Recipe;
+import Franciscobusleiman.recipes.recipes.exceptions.NotFoundException;
 import Franciscobusleiman.recipes.recipes.repositories.RecipeRepository;
 import Franciscobusleiman.recipes.recipes.repositories.UnitOfMeasureRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -28,20 +29,25 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public IngredientCommand findRecipeAndIngredientById(Long recipeId, Long ingredeintId) {
+    public IngredientCommand findRecipeAndIngredientById(Long recipeId, Long ingredientId) {
+
+
 
         Optional<Recipe> recipe = recipeRepository.findById(recipeId);
 
         if (!recipe.isPresent()) {
+
             log.debug("El recipe con id " + recipeId + " no fue encontrado");
+            throw new NotFoundException("El recipe con id " + recipeId + " no fue encontrado");
         }
         Recipe recipe1 = recipe.get();
 
         Optional<IngredientCommand> ingredientCommand = recipe1.getIngredients().stream().
-                filter(ingredient -> ingredient.getId().equals(ingredeintId)).
+                filter(ingredient -> ingredient.getId().equals(ingredientId)).
                 map(ingredient -> ingredientToIngredientCommand.convert(ingredient)).findFirst();
         if (!ingredientCommand.isPresent()) {
-            log.debug("Ingrediente con id " + ingredeintId + " no encontrado");
+            log.debug("Ingrediente con id " + ingredientId + " no encontrado");
+            throw new NotFoundException("El ingrediente con id " + ingredientId + " no fue encontrado");
         }
 
         return ingredientCommand.get();
@@ -54,11 +60,15 @@ public class IngredientServiceImpl implements IngredientService {
 
         if(! recipeOptional.isPresent()){
             log.debug("El recipe no fue encontrado");
+            throw new NotFoundException("El recipe con ID: " + recipeId + " no fue encontrado");
         }
         Recipe recipe = recipeOptional.get();
 
         Optional<Ingredient> ingredientOptional = recipe.getIngredients().stream().filter(ingredient -> ingredient.getId().equals(ingredientId)).findFirst();
 
+        if(!ingredientOptional.isPresent()){
+            throw new NotFoundException("El ingrediente con id " + ingredientId + " no fue encontrado");
+        }
         if(ingredientOptional.isPresent()){
             Ingredient ingredient = ingredientOptional.get();
            ingredient.setRecipe(null);
@@ -74,7 +84,8 @@ public class IngredientServiceImpl implements IngredientService {
         Optional<Recipe> recipe = recipeRepository.findById(ingredientCommand.getRecipeId());
 
         if (!recipe.isPresent()) {
-            return new IngredientCommand();
+
+            throw new NotFoundException("El recipe no fue encontrado");
         } else {
             Recipe recipeOk = recipe.get();
 

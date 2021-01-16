@@ -5,6 +5,7 @@ import Franciscobusleiman.recipes.recipes.commands.RecipeCommand;
 import Franciscobusleiman.recipes.recipes.converters.RecipeCommandToRecipe;
 import Franciscobusleiman.recipes.recipes.converters.RecipeToRecipeCommand;
 import Franciscobusleiman.recipes.recipes.domain.Recipe;
+import Franciscobusleiman.recipes.recipes.exceptions.NotFoundException;
 import Franciscobusleiman.recipes.recipes.repositories.RecipeRepository;
 import com.sun.istack.Nullable;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,14 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public void deleteById(Long id) {
 
+
+Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+
+if(!recipeOptional.isPresent()){
+
+    throw new NotFoundException("El recipe con ID: "+ id + " no fue encontrados");
+}
+
         recipeRepository.deleteById(id);
 
     }
@@ -47,8 +56,9 @@ public class RecipeServiceImpl implements RecipeService {
 
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
         if(!recipeOptional.isPresent()){
-            return null;
+            throw new NotFoundException("El recipe con ID: "+ id + " no fue encontrados");
         }
+
         return recipeOptional.get();
     }
 

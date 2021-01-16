@@ -1,8 +1,10 @@
 package Franciscobusleiman.recipes.recipes.controllers;
 
 import Franciscobusleiman.recipes.recipes.domain.Recipe;
+import Franciscobusleiman.recipes.recipes.exceptions.NumberFormatsException;
 import Franciscobusleiman.recipes.recipes.services.ImageService;
 import Franciscobusleiman.recipes.recipes.services.RecipeService;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,10 @@ public class ImageController {
     @GetMapping("recipe/{id}/image")
     public String getImageService(@PathVariable String id, Model model){
 
+        if(! NumberUtils.isCreatable(id)){
+            throw new NumberFormatsException("La cadena de texto: '" + id + "' no es un número (ID)");
+        }
+
         model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
 
         return "recipe/formImage";
@@ -35,7 +41,9 @@ public class ImageController {
 
     @PostMapping("recipe/{id}/SaveImage")
     public String SaveImage(@PathVariable String id, @RequestParam("image") MultipartFile file, Model model) throws IOException {
-
+        if(! NumberUtils.isCreatable(id)){
+            throw new NumberFormatsException("La cadena de texto: '" + id + "' no es un número (ID)");
+        }
 
         imageService.SaveImage(Long.valueOf(id), file);
 
@@ -47,6 +55,8 @@ public class ImageController {
 
     @RequestMapping("recipe/{id}/recipeimage")
     public void getImage(@PathVariable String id, HttpServletResponse response) throws IOException {
+
+
         Recipe recipe = recipeService.findById(Long.valueOf(id));
 
         if (recipe.getImage() != null) {

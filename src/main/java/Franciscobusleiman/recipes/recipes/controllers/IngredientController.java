@@ -3,9 +3,11 @@ package Franciscobusleiman.recipes.recipes.controllers;
 import Franciscobusleiman.recipes.recipes.commands.IngredientCommand;
 import Franciscobusleiman.recipes.recipes.commands.UnitOfMeasureCommand;
 import Franciscobusleiman.recipes.recipes.domain.Recipe;
+import Franciscobusleiman.recipes.recipes.exceptions.NumberFormatsException;
 import Franciscobusleiman.recipes.recipes.services.IngredientService;
 import Franciscobusleiman.recipes.recipes.services.RecipeService;
 import Franciscobusleiman.recipes.recipes.services.UnitOfMeasureService;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,6 +31,9 @@ public class IngredientController {
 
     @RequestMapping("recipe/{id}/ingredients")
     public String getIngredients(@PathVariable String id, Model model){
+        if(! NumberUtils.isCreatable(id)){
+            throw new NumberFormatsException("La cadena de texto: '" + id + "' no es un número (ID)");
+        }
         model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
 
         return "recipe/ingredient/ingredients";
@@ -37,6 +42,12 @@ public class IngredientController {
     @RequestMapping("/recipe/{recipeId}/ingredient/{ingredientId}/showIngredient")
     public String getIngredient(@PathVariable String recipeId, @PathVariable String ingredientId, Model model){
 
+        if(! NumberUtils.isCreatable(recipeId)){
+            throw new NumberFormatsException("La cadena de texto: '" + recipeId + "' no es un número (ID)");
+        }
+        if(! NumberUtils.isCreatable(ingredientId)){
+            throw new NumberFormatsException("La cadena de texto: '" + ingredientId + "' no es un número (ID)");
+        }
         model.addAttribute("ingredient", ingredientService.findRecipeAndIngredientById(Long.valueOf(recipeId), Long.valueOf(ingredientId)));
         return "recipe/ingredient/showIngredient";
     }
@@ -44,6 +55,13 @@ public class IngredientController {
     @RequestMapping("/recipe/{recipeId}/ingredient/{ingredientId}/updateIngredient")
     public String updateIngredientes(@PathVariable String recipeId, @PathVariable String ingredientId, Model model){
 
+        if(! NumberUtils.isCreatable(recipeId)){
+            throw new NumberFormatsException("La cadena de texto: '" + recipeId + "' no es un número (ID)");
+        }
+        if(! NumberUtils.isCreatable(ingredientId)){
+            throw new NumberFormatsException("La cadena de texto: '" + ingredientId + "' no es un número (ID)");
+        }
+        
         model.addAttribute("ingredient", ingredientService.findRecipeAndIngredientById(Long.valueOf(recipeId), Long.valueOf(ingredientId)));
         model.addAttribute("uoms", unitOfMeasureService.getUoms() );
 
@@ -62,6 +80,12 @@ model.addAttribute("ingredient", ingredientService.SaveOrUpdateIngredient(ingred
     @RequestMapping("/recipe/{recipeId}/ingredient/{ingredientId}/deleteIngredient")
     public String deleteIngredient(@PathVariable String recipeId, @PathVariable String ingredientId){
 
+        if(! NumberUtils.isCreatable(recipeId)){
+            throw new NumberFormatsException("La cadena de texto: '" + recipeId + "' no es un número (ID)");
+        }
+        if(! NumberUtils.isCreatable(ingredientId)){
+            throw new NumberFormatsException("La cadena de texto: '" + ingredientId + "' no es un número (ID)");
+        }
         ingredientService.deleteIngredient(Long.valueOf(recipeId), Long.valueOf(ingredientId));
 
         return "redirect:/index";
@@ -70,7 +94,11 @@ model.addAttribute("ingredient", ingredientService.SaveOrUpdateIngredient(ingred
     @RequestMapping("/recipe/{recipeId}/newIngredient")
     public String newIngredient(@PathVariable String recipeId, Model model){
 
-        IngredientCommand ingredientCommand = new IngredientCommand();
+        if(! NumberUtils.isCreatable(recipeId)) {
+            throw new NumberFormatsException("La cadena de texto: '" + recipeId + "' no es un número (ID)");
+
+        }
+            IngredientCommand ingredientCommand = new IngredientCommand();
         ingredientCommand.setUnitOfMeasure(new UnitOfMeasureCommand());
         ingredientCommand.setRecipeId(Long.valueOf(recipeId));
         model.addAttribute("ingredient", ingredientCommand);
