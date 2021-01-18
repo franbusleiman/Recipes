@@ -11,11 +11,14 @@
     <input type="hidden" th:field="*{id}">
 
 Recipe Name: <input type="text" th:field="*{description}">
-    <br>
-    Prep Time: <input type="text" th:field="*{prepTime}">
+    <p th:if="${#fields.hasErrors('description')}" th:each="error : ${#fields.errors('description')}" th:text="${error}"></p>
     <br>
 
+    Prep Time: <input type="text" th:field="*{prepTime}">
+    <p th:if="${#fields.hasErrors('prepTime')}" th:each="error : ${#fields.errors('prepTime')}" th:text="${error}"></p>
+<br>
     Cook Time: <input type="text" th:field="*{cookTime}">
+    <p th:if="${#fields.hasErrors('cookTime')}" th:each="error : ${#fields.errors('cookTime')}" th:text="${error}"></p>
     <br>
 
     Directions: <textarea th:field="*{directions}" rows="3"></textarea>

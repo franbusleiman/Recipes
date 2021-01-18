@@ -5,14 +5,19 @@ import Franciscobusleiman.recipes.recipes.domain.Recipe;
 import Franciscobusleiman.recipes.recipes.exceptions.NotFoundException;
 import Franciscobusleiman.recipes.recipes.exceptions.NumberFormatsException;
 import Franciscobusleiman.recipes.recipes.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+import java.util.List;
 
+@Slf4j
 @Controller
 public class RecipeController {
 
@@ -43,9 +48,13 @@ if(! NumberUtils.isCreatable(id)){
     }
 
     @PostMapping("saveRecipe")
-    public String saveOrUpdateRecipe(@ModelAttribute RecipeCommand recipeCommand){
+    public String saveOrUpdateRecipe(@Valid @ModelAttribute("recipe") RecipeCommand recipeCommand, BindingResult bindingResult){
+
+if(bindingResult.hasErrors()){
 
 
+    return "recipe/form";
+}
    RecipeCommand recipeCommand1 = recipeService.save(recipeCommand);
 
    return "redirect:/recipe/" + recipeCommand1.getId() + "/show/";
